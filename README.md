@@ -38,12 +38,12 @@ model.fir(xs, ys, {epochs: 10}).then(() => {
 const tf = require('@tensorflow/tfjs-node');
 
 const model = tf.sequential();
-model.add()
-model.add();
-model.compile();
+model.add(tf.layers.dense({units: 100, activation: 'relu', inputShape: [10]}));
+model.add(tf.layers.dense({units: 1, activation: 'linear'}));
+model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
 
-const xs = tf.randomNormal();
-const ys = tf.randomNormal();
+const xs = tf.randomNormal([100, 01]);
+const ys = tf.randomNormal([100, 1]);
 
 model.fit(xs, ys, {
   epochs: 100,
